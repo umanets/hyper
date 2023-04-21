@@ -55,7 +55,7 @@
     "defaultSSHApp": true,
     "quickEdit": false,
     "macOptionSelectionMode": "vertical",
-    "webGLRenderer": false,
+    "webGLRenderer": true,
     "webLinksActivationKey": "",
     "disableLigatures": true,
     "disableAutoUpdates": false,

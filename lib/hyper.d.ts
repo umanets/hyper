@@ -5,6 +5,8 @@ declare global {
   interface Window {
     __rpcId: string;
     rpc: Client;
+    store: Store;
+    remote: Electron.RemoteMainInterface
     focusActiveTerm: (uid?: string) => void;
   }
 
@@ -131,7 +133,7 @@ export type IUiReducer = Reducer<uiState, HyperActions>;
 
 export type ISessionReducer = Reducer<sessionState, HyperActions>;
 
-import {Middleware, Reducer} from 'redux';
+import {Middleware, Reducer, Store} from 'redux';
 export type hyperPlugin = {
   getTabProps: any;
   getTabsProps: any;
