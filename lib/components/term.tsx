@@ -6,7 +6,7 @@ import {SearchAddon, ISearchDecorationOptions} from 'xterm-addon-search';
 import {WebglAddon} from 'xterm-addon-webgl';
 import {LigaturesAddon} from 'xterm-addon-ligatures';
 import {Unicode11Addon} from 'xterm-addon-unicode11';
-import {clipboard, shell} from 'electron';
+import {clipboard} from 'electron';
 import Color from 'color';
 import terms from '../terms';
 import processClipboard from '../utils/paste';
@@ -497,7 +497,7 @@ export default class Term extends React.PureComponent<
     });
   }
 
-  setWebViewRef = (webView: any) => {
+  setWebViewRef = (webView: Electron.WebviewTag) => {
     const oldRef = this.webViewRef;
     this.webViewRef = webView;
 
@@ -505,7 +505,7 @@ export default class Term extends React.PureComponent<
       setTimeout(() => {
         const wc = window.remote.webContents.fromId(webView.getWebContentsId());
         wc.setIgnoreMenuShortcuts(true);
-        wc.on('before-input-event', (_event: any, input: { type: string; key: string; meta: any; }) => {
+        wc.on('before-input-event', (_event: any, input: {type: string; key: string; meta: any}) => {
           if (input.type === 'keyDown') {
             if (input.key === 'r' && input.meta) {
               webView.reload();
@@ -544,38 +544,38 @@ export default class Term extends React.PureComponent<
             {this.props.customChildren}
             {this.props.search ? (
               <SearchBox
-              next={this.searchNext}
-              prev={this.searchPrevious}
-              close={this.closeSearchBox}
-              caseSensitive={this.state.searchOptions.caseSensitive}
-              wholeWord={this.state.searchOptions.wholeWord}
-              regex={this.state.searchOptions.regex}
-              results={this.state.searchResults}
-              toggleCaseSensitive={() =>
-                this.setState({
-                  ...this.state,
-                  searchOptions: {...this.state.searchOptions, caseSensitive: !this.state.searchOptions.caseSensitive}
-                })
-              }
-              toggleWholeWord={() =>
-                this.setState({
-                  ...this.state,
-                  searchOptions: {...this.state.searchOptions, wholeWord: !this.state.searchOptions.wholeWord}
-                })
-              }
-              toggleRegex={() =>
-                this.setState({
-                  ...this.state,
-                  searchOptions: {...this.state.searchOptions, regex: !this.state.searchOptions.regex}
-                })
-              }
-              selectionColor={this.props.selectionColor}
-              backgroundColor={this.props.backgroundColor}
-              foregroundColor={this.props.foregroundColor}
-              borderColor={this.props.borderColor}
-              font={this.props.uiFontFamily}
-            />
-            ) : null }
+                next={this.searchNext}
+                prev={this.searchPrevious}
+                close={this.closeSearchBox}
+                caseSensitive={this.state.searchOptions.caseSensitive}
+                wholeWord={this.state.searchOptions.wholeWord}
+                regex={this.state.searchOptions.regex}
+                results={this.state.searchResults}
+                toggleCaseSensitive={() =>
+                  this.setState({
+                    ...this.state,
+                    searchOptions: {...this.state.searchOptions, caseSensitive: !this.state.searchOptions.caseSensitive}
+                  })
+                }
+                toggleWholeWord={() =>
+                  this.setState({
+                    ...this.state,
+                    searchOptions: {...this.state.searchOptions, wholeWord: !this.state.searchOptions.wholeWord}
+                  })
+                }
+                toggleRegex={() =>
+                  this.setState({
+                    ...this.state,
+                    searchOptions: {...this.state.searchOptions, regex: !this.state.searchOptions.regex}
+                  })
+                }
+                selectionColor={this.props.selectionColor}
+                backgroundColor={this.props.backgroundColor}
+                foregroundColor={this.props.foregroundColor}
+                borderColor={this.props.borderColor}
+                font={this.props.uiFontFamily}
+              />
+            ) : null}
           </>
         )}
         <style jsx global>{`

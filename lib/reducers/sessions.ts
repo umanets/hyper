@@ -125,9 +125,8 @@ const reducer: ISessionReducer = (state = initialState, action) => {
         return state.setIn(['sessions', state.activeUid, 'cwd'], action.cwd);
       }
       return state;
-    
+
     case SESSION_URL_SET:
-      // @ts-ignore
       return state.setIn(['sessions', action.uid, 'url'], action.url);
 
     default:

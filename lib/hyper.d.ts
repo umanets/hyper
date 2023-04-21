@@ -6,7 +6,7 @@ declare global {
     __rpcId: string;
     rpc: Client;
     store: Store;
-    remote: Electron.RemoteMainInterface
+    remote: Electron.RemoteMainInterface;
     focusActiveTerm: (uid?: string) => void;
   }
 
